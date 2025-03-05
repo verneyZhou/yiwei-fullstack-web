@@ -1,0 +1,16 @@
+
+.home-page-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: auto;
+    background: url(~@/assets/images/home/office-bg.png) no-repeat top;
+    background-size: 100% 375px;
+    .home-fixed-btn {
+        position: fixed;
+        bottom: 124px;
+        right: 16px;
+        width: 54px;
+        height: 54px;
+    }
+}

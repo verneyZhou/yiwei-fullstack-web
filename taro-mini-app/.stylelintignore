@@ -1,0 +1,4 @@
+# 忽略stylelint校验
+
+*.md
+# src/plugins/toast/index.less

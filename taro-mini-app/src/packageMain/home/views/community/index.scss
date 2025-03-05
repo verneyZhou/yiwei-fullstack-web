@@ -1,0 +1,26 @@
+
+.home-community-list {
+    padding: 20px 20px 120px;
+
+    .van-pull-refresh {
+        overflow: visible;
+    }
+
+    .van-pull-refresh__head {
+        z-index: -1;
+    }
+
+
+    .virtual-list-item {
+        border-radius: 4px;
+        padding: 4px;
+        &.item-odd {
+            background: #eee;
+            // height: 100px;
+        }
+        &.item-even {
+            background: #ddd;
+            // height: 120px;
+        }
+    }
+}

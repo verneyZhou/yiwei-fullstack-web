@@ -1,0 +1,74 @@
+#app {
+    width: 100%;
+    min-height: 100vh;
+    background: #fff;
+}
+
+
+
+// <span> 默认表现为块级样式?
+// 方法一：只使用部分需要的浏览器默认样式
+.h5-span {
+    display: inline;
+}
+
+.h5-div, .h5-ul, .h5-li {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+  
+// 方法二：直接引入全套浏览器默认样式
+// html4
+// @import '@tarojs/taro/html.css';
+// html5
+// @import '@tarojs/taro/html5.css';
+
+
+.image-show {
+    width: 180px;
+    height: 120px;
+}
+
+// .at-button {
+//     max-width: 200px;
+//     max-height: 100px;
+// }
+
+
+.custom-richtext-blockquote {
+    margin: 8px 0;
+    padding: 12px;
+    border-left: 4px solid #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 4px;
+}
+
+// 富文本代码块样式
+.custom-richtext-code {
+    display: block;
+    margin: 8px 0;
+    padding: 12px;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d4d4d4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    // word-wrap: break-word;
+
+    .dark-mode & {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+    }
+}
+.custom-richtext-codespan {
+    display: inline-block;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    color: #d4d4d4;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre-wrap;
+}

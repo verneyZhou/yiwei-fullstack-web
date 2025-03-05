@@ -1,0 +1,24 @@
+.chat-page-wrapper {
+  font-size: 14px;
+    .scroll-view-wrapper {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    .msg-input {
+        padding: 8px !important;
+        height: 56px;
+        min-height: 56px;
+        .taro-textarea {
+          background-color: inherit;
+          height: 40px;
+        }
+    }
+    .send-btn {
+        padding: 6px 10px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}

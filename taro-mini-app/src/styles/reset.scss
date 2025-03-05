@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+body,html,page {
+    font-size: 14px
+}
+
+// 以下代码在小程序上好像不生效...
+// * {
+//     box-sizing: border-box;
+//     -webkit-tap-highlight-color: transparent;
+// }
+
+// *::before,
+// *::after {
+//     box-sizing: border-box;
+// }
+
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+html,
+body {
+    height: 100%;
+    -webkit-overflow-scrolling: touch; // 解决 ios手机上，网页中可滚动区域滚动不流畅，手指滑动多少页面就只滚动多少，没有弹性效果
+}
+
+li,
+ol,
+ul {
+    list-style: none;
+}
+
+img {
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+input::-ms-clear,
+input::-ms-reveal {
+    display: none;
+}
+
+button,
+input[type="button"],
+input[type="number"],
+input[type="search"],
+input[type="submit"],
+input[type="tel"],
+input[type="text"],
+textarea {
+    appearance: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+a:active,
+a:focus,
+a:hover,
+button,
+input,
+textarea {
+    outline: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+span,
+output {
+    display: inline-block;
+    line-height: 1;
+}

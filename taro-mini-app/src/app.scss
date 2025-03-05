@@ -1,0 +1,12 @@
+
+
+@import '~@/styles/base.scss';
+@import '~@/styles/reset.scss';
+
+
+// tailwindcss 相关样式如果需在reset.scss 之后引入，不然会被覆盖
+@import 'tailwindcss/base';
+// @use 'tailwindcss/components' as *; // 里面默认存放的是 pc 端自适应相关的样式，对小程序环境来说没有用处
+@import 'tailwindcss/utilities';
+
+

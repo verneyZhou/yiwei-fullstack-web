@@ -1,0 +1,41 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "node-backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon main.js",
+    "serve:prd": "nodemon main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix"
+  },
+  "keywords": [],
+  "author": "zhou",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^13.1.0",
+    "axios": "^1.7.9",
+    "cookie": "^1.0.2",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.7",
+    "ioredis": "^5.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "koa": "^2.15.3",
+    "koa-body": "^6.0.1",
+    "koa-bodyparser": "^4.4.1",
+    "koa-jwt": "^4.0.4",
+    "koa2-cors": "^2.0.6",
+    "log4js": "^6.9.1",
+    "mysql2": "^3.11.5",
+    "nanoid": "^5.1.2",
+    "nodemon": "^3.1.9",
+    "openai": "^4.85.3",
+    "path": "^0.12.7",
+    "svg-captcha": "^1.4.0",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.21.0"
+  }
+}

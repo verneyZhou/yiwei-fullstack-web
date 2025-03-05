@@ -1,0 +1,102 @@
+
+.home-userinfo-container {
+    padding: 20px;
+    .name-guide {
+        margin-bottom: 24px;
+        .name {
+            .label {
+                font-family: PingFangSC-Semibold;
+                font-size: 20px;
+                color: #333;
+                line-height: 20px;
+            }
+            .edit-btn {
+                border-radius: 12px;
+                background: rgb(255 255 255 / 85%);
+                padding: 5px 8px;
+                font-family: PingFangSC-Medium;
+                font-size: 10px;
+                color: #333;
+                transform: scale(0.9);
+                margin-left: 8px;
+            }
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                width: 30px;
+                height: 30px;
+                max-width: 30px;
+                max-height: 30px;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .total-info {
+        padding: 14px 0;
+        background: rgb(255 255 255 / 85%);
+        border-radius: 12px;
+
+        .item {
+            flex: 1;
+            position: relative;
+            & + .item::before {
+                position: absolute;
+                content: '';
+                width: 0.5px;
+                height: 24px;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background: #d3d5df;
+            }
+            .num {
+                font-family: PingFangSC-Semibold;
+                font-size: 18px;
+                color: #333;
+                text-align: center;
+                line-height: 18px;
+                margin-bottom: 6px;
+                &.small {
+                    font-size: 14px;
+                    line-height: 14px;
+                }
+            }
+            .desc {
+                b {
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 1px;
+                    &.ability {
+                        background: url(~@/assets/images/home/ability-icon.png) no-repeat center;
+                        background-size: 100% 100%;
+                    }
+                    &.lucky {
+                        background: url(~@/assets/images/home/lucky-icon.png) no-repeat center;
+                        background-size: 100% 100%;
+                    }
+                    &.range {
+                        background: url(~@/assets/images/home/range-icon.png) no-repeat center;
+                        background-size: 100% 100%;
+                    }
+                    &.work {
+                        background: url(~@/assets/images/home/work-icon.png) no-repeat center;
+                        background-size: 100% 100%;
+                    }
+                }
+                span {
+                    font-family: PingFangSC-Medium;
+                    font-size: 12px;
+                    color: #939eaf;
+                    text-align: center;
+                    line-height: 12px;
+                }
+            }
+        }
+    }
+}

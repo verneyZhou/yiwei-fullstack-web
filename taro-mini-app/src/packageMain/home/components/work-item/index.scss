@@ -1,0 +1,79 @@
+
+.work-item {
+    background: #fff;
+    box-shadow: 0 2px 20px 0 rgb(0 60 138 / 7%);
+    border-radius: 12px;
+    padding: 16px;
+    & + .work-item {
+        margin-top: 10px;
+    }
+    .info {
+        flex: 1;
+        overflow: hidden;
+        h2 {
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #333;
+            line-height: 14px;
+            margin-bottom: 16px;
+        }
+        .time {
+            font-family: PingFangSC-Medium;
+            font-size: 12px;
+            color: #939eaf;
+            line-height: 12px;
+        }
+        .time-like {
+            p {
+                font-family: PingFangSC-Medium;
+                font-size: 12px;
+                color: #939eaf;
+                line-height: 12px;
+                padding-right: 8px;
+                position: relative;
+                & + p {
+                    padding-left: 8px;
+                    &::before {
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        left: 0;
+                        content: "";
+                        width: 0.5px;
+                        height: 12px;
+                        background: #d3d5df;
+                    }
+                }
+                &.comment {
+                    padding-right: 12px;
+                    position: relative;
+                    &::after {
+                        position: absolute;
+                        content: "";
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 12px;
+                        height: 12px;
+                        background: url(~@/assets/images/common/right-icon.png) no-repeat center;
+                        background-size: 100% 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    .like {
+        img {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 6px;
+        }
+        span {
+            font-family: PingFangSC-Medium;
+            font-size: 12px;
+            color: #939eaf;
+            line-height: 12px;
+        }
+    }
+}

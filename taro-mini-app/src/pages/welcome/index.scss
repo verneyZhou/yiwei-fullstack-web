@@ -1,0 +1,27 @@
+
+.welcome-page-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    .welcome-logo {
+        width: 351px;
+        height: 351px;
+        background: url(~@/assets/images/welcome/welcome-bg.png) no-repeat center 20px;
+        background-size: 100%;
+    }
+    .welcome-desc {
+        .desc-item {
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            line-height: 30px;
+            color: #939eaf;
+        }
+    }
+    .office-btn {
+        position: relative;
+        transition: all 0.3s ease;
+        
+    }
+}
+

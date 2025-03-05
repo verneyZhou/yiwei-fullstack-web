@@ -1,0 +1,120 @@
+.login-page-wrapper {
+  @apply h-screen bg-white p-4;
+
+  .login-header {
+    @apply mt-10 mb-12 text-center;
+
+    .title {
+      @apply text-2xl font-bold text-gray-800;
+    }
+
+    .subtitle {
+      @apply mt-2 text-sm text-gray-500;
+    }
+  }
+
+  .form-container {
+    @apply w-full max-w-sm mx-auto;
+
+    .form-item {
+      @apply mb-4;
+      
+      .van-field {
+        @apply border-b border-gray-200;
+        
+        &__left-icon {
+          @apply mr-2;
+        }
+      }
+
+
+      .van-cell {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .vant-form-label {
+            display: none !important;
+      }
+      .van-cell__value {
+        border-bottom: 1px solid #e5e7eb;
+      }
+      &.captcha-item {
+        .van-cell {
+            padding-right: 4px;
+          }
+      }
+
+      .vant-form-formItem-controll {
+        margin-left: 0 !important;
+      }
+
+    }
+
+    .captcha-item {
+      .captcha-wrapper {
+        @apply flex items-center;
+
+        .captcha-input {
+          @apply flex-1;
+        }
+
+        .captcha-image {
+          @apply ml-2 flex items-center justify-center;
+          min-width: 80px;
+          height: 40px;
+
+          .image {
+            @apply w-full h-full object-cover;
+          }
+
+          text {
+            @apply text-sm text-blue-600;
+          }
+        }
+      }
+    }
+
+    .submit-btn {
+      @apply w-full;
+    }
+  }
+
+  .actions {
+    @apply flex justify-between items-center mt-4 mb-8;
+
+    .action-link {
+      @apply text-sm text-gray-600;
+    }
+  }
+
+  .login-type-switch {
+    @apply mt-4 mb-6 text-center;
+
+    .switch-btn {
+      @apply text-blue-600 text-sm;
+    }
+  }
+
+  .wechat-login {
+    @apply mt-8 text-center;
+
+    .divider {
+      @apply my-4 text-gray-400 text-sm;
+    }
+
+    .wechat-btn {
+      @apply mt-4 flex items-center justify-center w-full py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700;
+    }
+  }
+
+  .wechat-info {
+    @apply flex flex-col items-center mt-4;
+    .avatar-wrapper {
+      @apply w-16 h-16 flex justify-center;
+      margin-bottom: 10px !important;
+      .avatar {
+        @apply w-16 h-16;
+      }
+    }
+  }
+}

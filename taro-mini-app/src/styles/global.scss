@@ -1,0 +1,276 @@
+// 一些全局使用的公共样式
+.flex-center-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-center-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-center-start {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flex-column-between {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.lock-html {
+    overflow-y: hidden;
+}
+
+.disabled-html {
+    pointer-events: none !important;
+    opacity: 0.7 !important;
+}
+
+
+// margin left 10px
+.mr-l-10 {
+    margin-left: 10px !important;
+}
+
+.mr-r-10 {
+    margin-right: 10px !important;
+}
+
+.mr-b-10 {
+    margin-bottom: 10px !important;
+}
+
+.mr-t-10 {
+    margin-top: 10px !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+//强制不换行，超出显示省略号
+.ellipse {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+// 超出三行省略
+.ellipse-3 {
+    display: -webkit-box;
+
+    /* autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+// 隐藏滚动条
+.scroll-hidden {
+    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    &::-webkit-scrollbar {
+        display: none; /* Chrome Safari */
+    }
+}
+
+// 页面标题样式
+.page-title {
+    font-family: PingFangSC-Semibold;
+    font-size: 20px;
+    color: #333;
+    line-height: 20px;
+    margin-bottom: 8px;
+}
+
+
+// 通用按钮样式
+.office-btn {
+    font-family: PingFangSC-Medium;
+    font-size: 17px;
+    line-height: 24px;
+    color: #fff;
+    text-align: center;
+    background-image: linear-gradient(225deg, #fed648 0%, #ffb6a0 34%, #fc97ff 62%, #7ceaff 100%);
+    border-radius: 22px;
+    padding: 10px;
+    white-space: nowrap;
+
+    &.bg-active {
+        background-image: linear-gradient(225deg, #fed648 0%, #ffb6a0 48%, #fc97ff 100%);
+    }
+
+    &.big {
+        width: 311px;
+    }
+
+    &.middle {
+        width: 180px;
+    }
+
+    &.small {
+        width: 90px;
+        padding: 8px;
+    }
+
+    &.mini {
+        font-size: 12px;
+        line-height: 17px;
+        padding: 5px 14px;
+    }
+
+    &.normal {
+        width: 160px;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 8px;
+    }
+
+    &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    &.disabled-style {
+        opacity: 0.6;
+    }
+
+    &.default {
+        border: 0.5px solid #333;
+        color: #333;
+        background: #fff;
+        padding: 9px;
+        font-family: PingFangSC-Regular;
+        font-weight: 400;
+
+        &.small {
+            padding: 7px !important;
+        }
+    }
+}
+
+// 渐变边框样式
+.office-linear-border {
+    position: relative;
+    z-index: 1;
+    padding: 1px;
+
+    &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        border-radius: inherit;
+        background: linear-gradient(225deg, #fed648 0%, #ffb6a0 34%, #fc97ff 62%, #7ceaff 100%);
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: calc(100% - 1px);
+        height: calc(100% - 1px);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        border-radius: inherit;
+        background: #fff;
+    }
+}
+
+.link-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    position: relative;
+    padding-right: 16px;
+
+    &::after {
+        position: absolute;
+        content: "";
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 14px;
+        height: 14px;
+        background: url("~@/assets/images/home/right-icon.png") no-repeat center;
+        background-size: 100% 100%;
+        transition: all ease-in-out 0.2s;
+    }
+
+    &.open {
+        &::after {
+            transform: translateY(-50%) rotate(-90deg);
+        }
+    }
+
+    &.red-point {
+        &::before {
+            position: absolute;
+            content: "";
+            top: -3px;
+            right: -3px;
+            background: #f43530;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+    }
+
+    &.disabled {
+        color: rgb(0 0 0 / 30%);
+        pointer-events: none;
+    }
+
+    &.small {
+        font-family: PingFangSC-Medium;
+        font-size: 12px;
+        padding-right: 12px;
+
+        &::after {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    &.active {
+        color: #ff8200;
+    }
+}
+
+// 没有数据提示
+.no-data-tip {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: rgb(150 151 153);
+}
+

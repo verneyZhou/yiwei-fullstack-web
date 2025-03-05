@@ -1,0 +1,130 @@
+.office-toast-wrapper {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .office-toast {
+    width: fit-content;
+    height: 50PX;
+    line-height: 50PX;
+    text-align: center;
+    margin-bottom: 6PX;
+    
+    animation: toastTop 0.25s ease-out;
+    animation-fill-mode: both;
+    animation-fill-mode: both;
+
+    // white-space:nowrap;
+    font-size: 14PX;
+    transform: translateZ(100px); // 解决IOS z-index 层级失效
+    
+    &.slideup {
+        animation-name: toastHide;
+    }
+  
+    .toast-con {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        margin: 0 auto;
+        max-width: 300PX;
+        padding: 0 20PX;
+        min-height: 50PX;
+        // box-shadow: 0 0 56PX rgb(0 0 0 / 11%);
+        box-shadow: 0 6PX 16PX 0 rgba(0, 0, 0, 0.08), 0 3PX 6PX -4PX rgba(0, 0, 0, 0.12), 0 9PX 28PX 8PX rgba(0, 0, 0, 0.05);
+        border-radius: 8PX;
+        .txt {
+            font-size: 14PX;
+            line-height: 24PX;
+            color: rgba(0, 0, 0, 0.88)
+
+        }
+        
+    }
+  
+    .icon-toast-success,
+    .icon-toast-info,
+    .icon-toast-warning,
+    .icon-toast-error,
+    .icon-toast-loading {
+        display: inline-block;
+        width: 20PX;
+        height: 20PX;
+        margin-right: 13PX;
+        margin-top: -2PX;
+        vertical-align: middle;
+        background-image: url("~@/assets/images/common/icons-toast.png");
+        background-repeat: no-repeat;
+    }
+    .icon-toast-success {
+        background-position: 0 0;
+    }
+    .icon-toast-info {
+        background-position: 0 -119PX;
+    }
+    .icon-toast-warning {
+        background-position: 0 -60PX;
+    }
+    .icon-toast-error {
+        background-position: 0 -187PX;
+    }
+    .icon-toast-loading {
+        background-position: 0 -232PX;
+        animation: circle 1.1s infinite linear;
+    }
+  }
+}
+
+
+@keyframes circle {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes circle {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes toastTop {
+  0% {
+      opacity: 0;
+      transform: translateY(0);
+      transform: translateY(0);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translateY(45PX);
+      transform: translateY(45PX);
+  }
+}
+
+@keyframes toastHide {
+  0% {
+      opacity: 1;
+      transform: translateY(45PX);
+      transform: translateY(45PX);
+  }
+
+  100% {
+      opacity: 0;
+      transform: translateY(0);
+      transform: translateY(0);
+  }
+}
