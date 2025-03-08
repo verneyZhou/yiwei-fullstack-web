@@ -648,7 +648,11 @@ const ChatPage = () => {
                     }`}
                     onClick={() => {
                       setChatId(item.chat_id);
-                      setMessages(item.messages);
+                      setMessages(
+                        typeof item.messages === "string"
+                          ? JSON.parse(item.messages)
+                          : item.messages
+                      );
                       setSelectedModel(item.model);
                       toggleDrawer();
                     }}

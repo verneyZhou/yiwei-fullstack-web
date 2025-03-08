@@ -4,17 +4,22 @@ import React, {
   createContext,
   useContext,
   useRef,
-} from 'react';
-import { BrowserRouter, useRoutes } from 'react-router-dom';
-import routes from './router';
-import './index.scss';
-import { HomePageContext } from './context';
-import { ScrollView } from '@tarojs/components';
+} from "react";
+import { BrowserRouter, useRoutes } from "react-router-dom";
+import routes from "./router";
+import "./index.scss";
+import { HomePageContext } from "./context";
+import { ScrollView } from "@tarojs/components";
+
+const TARO_ENV = process.env.TARO_ENV;
+const prefix = process.env.TARO_APP_PUBLIC_PATH;
+const basename =
+  TARO_ENV === "h5" ? `${prefix}/packageMain/home` : "packageMain/home";
 
 // 首页入口
 export default function App() {
   return (
-    <BrowserRouter basename='packageMain/home'>
+    <BrowserRouter basename={basename}>
       <HomePage />
     </BrowserRouter>
   );
@@ -23,11 +28,11 @@ export default function App() {
 function HomePage() {
   const elements = useRoutes(routes);
   const homePageRef = useRef(null);
-  const homeAppVersion = '1.1.1';
+  const homeAppVersion = "1.1.1";
   return (
     <HomePageContext.Provider value={{ homePageRef, homeAppVersion }}>
       <ScrollView
-        className='home-page-wrapper'
+        className="home-page-wrapper"
         ref={homePageRef}
         scrollY
         scrollWithAnimation

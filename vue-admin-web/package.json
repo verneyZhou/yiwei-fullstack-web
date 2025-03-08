@@ -10,6 +10,7 @@
   },
   "repository": "",
   "scripts": {
+    "deploy": "chmod +x deploy.sh && ./deploy.sh",
     "dev": "vite",
     "build:staging": "vue-tsc && vite build --mode staging",
     "build": "vue-tsc && vite build",

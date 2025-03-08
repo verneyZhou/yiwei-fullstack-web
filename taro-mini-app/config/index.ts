@@ -9,6 +9,7 @@ const path = require('path')
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
   console.log('======defineConfig', command, mode, process.env.NODE_ENV, process.env.TARO_ENV, process.env.TARO_APP_ENV);
+  console.log('===TARO_APP_PUBLIC_PATH', process.env.TARO_APP_PUBLIC_PATH);
   const baseConfig: UserConfigExport<'webpack5'> = {
     projectName: 'taro-mini-app',
     date: '2024-12-5',
@@ -107,7 +108,8 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
       }
     },
     h5: {
-      publicPath: '/',
+      // publicPath: mode === 'production' ? './' : '/', // 静态资源的前缀路径，默认为 '/'
+      publicPath: process.env.TARO_APP_PUBLIC_PATH || '/', // 因为taro打包之后的h5项目是个多页面项目，这里静态资源就不按照SPA应用那样配置相对路径了，不然刷新页面会找不到静态资源
       staticDirectory: 'static',
       output: {
         filename: 'js/[name].[hash:8].js',
@@ -132,6 +134,7 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
       },
       router: {
         mode: process.env.TARO_ENV === 'harmony-hybrid' ? 'hash' : 'browser', // 路由模式，支持 hash、browser
+        basename: process.env.TARO_APP_PUBLIC_PATH || '', // 路由基地址，默认为 '/'
       },
       esnextModules: ['@antmjs/vantui'], // 由于引用 `node_modules` 的模块，默认不会编译，所以需要额外给 H5 配置 `esnextModules`
       miniCssExtractPluginOption: {

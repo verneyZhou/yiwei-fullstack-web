@@ -1,76 +1,76 @@
 <script lang="ts" setup>
-import type { FormInstance } from "element-plus"
-import { deleteAIChatApi, getAIChatListApi } from "@@/apis/ai"
-import { usePagination } from "@@/composables/usePagination"
-import { Delete, Refresh, Search, View } from "@element-plus/icons-vue"
-import { reactive, ref } from "vue"
+import type { FormInstance } from "element-plus";
+import { deleteAIChatApi, getAIChatListApi } from "@@/apis/ai";
+import { usePagination } from "@@/composables/usePagination";
+import { Delete, Refresh, Search, View } from "@element-plus/icons-vue";
+import { reactive, ref } from "vue";
 
 defineOptions({
-  name: "AIChat"
-})
+  name: "AIChat",
+});
 
 interface ChatData {
-  chat_id: string
-  creator: string
-  creator_id: string
-  create_time: string
-  content: string
-  model: string
-  [key: string]: any
+  chat_id: string;
+  creator: string;
+  creator_id: string;
+  create_time: string;
+  content: string;
+  model: string;
+  [key: string]: any;
 }
 
 interface ChatMessage {
-  role: "assistant" | "user"
-  content: string
-  reasoning_content?: string
+  role: "assistant" | "user";
+  content: string;
+  reasoning_content?: string;
 }
 
-const loading = ref<boolean>(false)
-const { paginationData, handleCurrentChange, handleSizeChange }
-  = usePagination()
+const loading = ref<boolean>(false);
+const { paginationData, handleCurrentChange, handleSizeChange } =
+  usePagination();
 
 // 表格数据
-const tableData = ref<ChatData[]>([])
+const tableData = ref<ChatData[]>([]);
 
 // 搜索表单
-const searchFormRef = ref<FormInstance | null>(null)
+const searchFormRef = ref<FormInstance | null>(null);
 const searchData = reactive({
   creator: "",
-  model: ""
-})
+  model: "",
+});
 
 // 对话内容弹窗
-const dialogVisible = ref<boolean>(false)
-const currentChatContent = ref<ChatMessage[]>([])
+const dialogVisible = ref<boolean>(false);
+const currentChatContent = ref<ChatMessage[]>([]);
 
 // 查看对话内容
 function handleViewContent(messages: ChatMessage[]) {
   try {
-    currentChatContent.value = messages
-    dialogVisible.value = true
+    currentChatContent.value = messages;
+    dialogVisible.value = true;
   } catch (error) {
-    ElMessage.error("对话内容格式错误")
+    ElMessage.error("对话内容格式错误");
   }
 }
 
 // 获取表格数据
 async function getTableData() {
-  loading.value = true
+  loading.value = true;
   try {
     const params = {
       ...searchData,
       page_size: paginationData.pageSize,
-      page_num: paginationData.currentPage
-    }
-    const res: any = await getAIChatListApi(params)
-    console.log(res)
-    const { list = [], pagination } = res.data || {}
-    tableData.value = list || []
-    paginationData.total = pagination?.total || 0
-    loading.value = false
+      page_num: paginationData.currentPage,
+    };
+    const res: any = await getAIChatListApi(params);
+    console.log(res);
+    const { list = [], pagination } = res.data || {};
+    tableData.value = list || [];
+    paginationData.total = pagination?.total || 0;
+    loading.value = false;
   } catch (error) {
-    loading.value = false
-    ElMessage.error("获取数据失败")
+    loading.value = false;
+    ElMessage.error("获取数据失败");
   }
 }
 
@@ -78,61 +78,61 @@ async function getTableData() {
 function handleSearch() {
   paginationData.currentPage === 1
     ? getTableData()
-    : (paginationData.currentPage = 1)
+    : (paginationData.currentPage = 1);
 }
 
 // 重置搜索
 function resetSearch() {
-  searchFormRef.value?.resetFields()
-  handleSearch()
+  searchFormRef.value?.resetFields();
+  handleSearch();
 }
 
 // 表格选中数据
-const multipleSelection = ref<ChatData[]>([])
+const multipleSelection = ref<ChatData[]>([]);
 
 // 表格选择事件
 function handleSelectionChange(selection: ChatData[]) {
-  multipleSelection.value = selection
+  multipleSelection.value = selection;
 }
 
 // 删除
 function handleDelete(row: ChatData | null, type = "single") {
-  console.log(multipleSelection.value)
+  console.log(multipleSelection.value);
   if (type === "batch" && !multipleSelection.value.length) {
-    ElMessage.warning("请选择要删除的数据")
-    return
+    ElMessage.warning("请选择要删除的数据");
+    return;
   }
-  const deleteData = type === "single" ? [row] : multipleSelection.value
-  const ids = deleteData.map(item => item?.chat_id).join(",")
+  const deleteData = type === "single" ? [row] : multipleSelection.value;
+  const ids = deleteData.map((item) => item?.chat_id).join(",");
 
   ElMessageBox.confirm(`正在删除聊天记录：${ids}，确认删除？`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
-    type: "warning"
+    type: "warning",
   }).then(async () => {
     try {
-      loading.value = true
-      const res: any = await deleteAIChatApi({ ids })
+      loading.value = true;
+      const res: any = await deleteAIChatApi({ ids });
       if (res.code === 200) {
-        ElMessage.success("删除成功")
-        getTableData()
+        ElMessage.success("删除成功");
+        getTableData();
       } else {
-        ElMessage.error("删除失败")
+        ElMessage.error("删除失败");
       }
-      loading.value = false
+      loading.value = false;
     } catch (error) {
-      loading.value = false
-      ElMessage.error("删除失败")
+      loading.value = false;
+      ElMessage.error("删除失败");
     }
-  })
+  });
 }
 
 // 监听分页参数变化
 watch(
   [() => paginationData.currentPage, () => paginationData.pageSize],
   getTableData,
-  { immediate: true }
-)
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -149,9 +149,7 @@ watch(
           <el-button type="primary" :icon="Search" @click="handleSearch">
             查询
           </el-button>
-          <el-button :icon="Refresh" @click="resetSearch">
-            重置
-          </el-button>
+          <el-button :icon="Refresh" @click="resetSearch"> 重置 </el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -193,7 +191,16 @@ watch(
                   bg
                   size="small"
                   :icon="View"
-                  @click="handleViewContent(scope.row.messages)"
+                  @click="
+                    () => {
+                      const { messages } = scope.row;
+                      const msgs =
+                        typeof messages === 'string'
+                          ? JSON.parse(messages)
+                          : messages;
+                      handleViewContent(msgs);
+                    }
+                  "
                 >
                   查看内容
                 </el-button>

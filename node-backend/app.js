@@ -29,6 +29,7 @@ app.use(
  * 3. 拦截通过throw抛出的异常。
  */
 app.use(async (ctx, next) => {
+    console.log('=123456==ctx', ctx.request);
     try {
         await next();
     } catch (err) {

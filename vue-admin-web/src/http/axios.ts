@@ -4,6 +4,9 @@ import { getToken } from "@@/utils/cache/cookies"
 import axios from "axios"
 import { get, merge } from "lodash-es"
 
+const { MODE } = import.meta.env
+console.log(MODE)
+
 /** 退出登录并强制刷新页面（会重定向到登录页） */
 function logout() {
   useUserStore().logout()

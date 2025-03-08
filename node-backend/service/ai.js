@@ -8,7 +8,7 @@ const {
     AI_KEY: {
         OPENAI_API_KEY,
         DEEPSEEK_API_KEY,
-        siliconflow_api_key,
+        SILICONFLOW_API_KEY,
         KIMI_API_KEY,
         ZHIPU_API_KEY,
     },
@@ -176,7 +176,7 @@ class AIService {
                     method: 'POST',
                     url: 'https://api.siliconflow.cn/v1/chat/completions',
                     headers: {
-                        Authorization: `Bearer ${siliconflow_api_key}`,
+                        Authorization: `Bearer ${SILICONFLOW_API_KEY}`,
                         'Content-Type': 'application/json',
                     },
                     data: JSON.stringify({

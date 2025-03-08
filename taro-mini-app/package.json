@@ -32,7 +32,8 @@
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "lint": "eslint --ext .js,ts,.tsx,jsx src",
     "lint:fix": "eslint --ext .js,.ts,tsx,jsx src --fix",
-    "postinstall": "weapp-tw patch"
+    "postinstall": "weapp-tw patch",
+    "deploy:h5": "chmod +x deploy.sh && ./deploy.sh"
   },
   "browserslist": [
     "defaults and fully supports es6-module",

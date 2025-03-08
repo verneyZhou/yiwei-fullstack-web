@@ -1,84 +1,84 @@
 <script lang="ts" setup>
-import type { FormInstance, FormRules } from "element-plus"
-import type { LoginRequestData } from "./apis/type"
-import { useSettingsStore } from "@/pinia/stores/settings"
-import { useUserStore } from "@/pinia/stores/user"
-import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
-import { Key, Lock, User } from "@element-plus/icons-vue"
-import { getLoginCodeApi, loginApi } from "./apis"
-import { useFocus } from "./composables/useFocus"
+import type { FormInstance, FormRules } from "element-plus";
+import type { LoginRequestData } from "./apis/type";
+import { useSettingsStore } from "@/pinia/stores/settings";
+import { useUserStore } from "@/pinia/stores/user";
+import ThemeSwitch from "@@/components/ThemeSwitch/index.vue";
+import { Key, Lock, User } from "@element-plus/icons-vue";
+import { getLoginCodeApi, loginApi } from "./apis";
+import { useFocus } from "./composables/useFocus";
 
-const router = useRouter()
+const router = useRouter();
 
-const userStore = useUserStore()
+const userStore = useUserStore();
 
-const settingsStore = useSettingsStore()
+const settingsStore = useSettingsStore();
 
-const { isFocus, handleBlur, handleFocus } = useFocus()
+const { isFocus, handleBlur, handleFocus } = useFocus();
 
 /** 登录表单元素的引用 */
-const loginFormRef = ref<FormInstance | null>(null)
+const loginFormRef = ref<FormInstance | null>(null);
 
 /** 登录按钮 Loading */
-const loading = ref(false)
+const loading = ref(false);
 
 /** 验证码图片 URL */
-const captchaInfo = ref<any>(null)
+const captchaInfo = ref<any>(null);
 
 /** 登录表单数据 */
 const loginFormData: LoginRequestData = reactive({
   username: "admin",
   password: "123456",
-  code: ""
-})
+  code: "",
+});
 
 /** 登录表单校验规则 */
 const loginFormRules: FormRules = {
   username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   password: [
     { required: true, message: "请输入密码", trigger: "blur" },
-    { min: 2, max: 16, message: "长度在 2 到 16 个字符", trigger: "blur" }
+    { min: 2, max: 16, message: "长度在 2 到 16 个字符", trigger: "blur" },
   ],
-  code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
-}
+  code: [{ required: true, message: "请输入验证码", trigger: "blur" }],
+};
 
 /** 登录 */
 function handleLogin() {
   loginFormRef.value?.validate((valid) => {
     if (!valid) {
-      ElMessage.error("表单校验不通过")
-      return
+      ElMessage.error("表单校验不通过");
+      return;
     }
-    loading.value = true
+    loading.value = true;
     const params = {
       ...loginFormData,
-      captcha_id: captchaInfo.value?.id
-    }
+      captcha_id: captchaInfo.value?.id,
+    };
     loginApi(params)
       .then(({ data }) => {
-        userStore.setToken(data.token)
-        router.push("/")
+        userStore.setToken(data.token);
+        router.push("/");
       })
       .catch(() => {
         // loginFormData.password = "";
       })
       .finally(() => {
-        loading.value = false
-      })
-  })
+        loading.value = false;
+      });
+  });
 }
 
 /** 创建验证码 */
 function createCode() {
   // 清空已输入的验证码
-  loginFormData.code = ""
+  loginFormData.code = "";
   // 清空验证图片
-  captchaInfo.value = null
+  captchaInfo.value = null;
   // 获取验证码图片
   getLoginCodeApi().then((res) => {
-    console.log(res)
-    captchaInfo.value = res.data || null
-  })
+    console.log(res);
+    captchaInfo.value = res.data || null;
+  });
 }
 </script>
 
@@ -89,7 +89,7 @@ function createCode() {
     <div class="login-card">
       <div class="title">
         <!-- <img src="@@/assets/images/layouts/logo-text-2.png" /> -->
-        <h2>后台管理系统</h2>
+        <h2>后台管理系统2.0</h2>
       </div>
       <div class="content">
         <el-form
