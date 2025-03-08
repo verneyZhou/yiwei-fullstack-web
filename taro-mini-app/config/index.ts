@@ -16,11 +16,17 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
     // designWidth: 750,
     designWidth(input: any) {
       let file = input?.file?.replace(/\+/g, '/');
-      if (file?.indexOf('@antmjs/vantui') > -1) {
-        return 750
+      if (file?.indexOf('@antmjs/vantui') > -1) { // vantui 库 
+        return 750 
       }
-      return 375
+      return 375 // 默认值
     },
+    // 设备比例配置
+    // 用于设置不同设备屏幕的显示比例
+    // 640: 适用于较小屏幕设备，如iPhone SE
+    // 750: 适用于标准设计稿尺寸
+    // 375: 适用于iPhone标准屏幕
+    // 828: 适用于iPhone Plus系列
     deviceRatio: {
       640: 2.34 / 2,
       750: 1,

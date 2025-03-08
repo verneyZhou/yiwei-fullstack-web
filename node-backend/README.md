@@ -14,15 +14,6 @@
 
 -   [mysql 教程](https://www.runoob.com/mysql/mysql-tutorial.html)
 
-```js
-
-// ecs mysql
-ecs msql：123.57.172.182 / root  /  2020zyZY
-
-// 本地 mysql
-local mysql：localhost / root  /  123456
-```
-
 ## 报错记录
 
 -   运行 mysql 时报错：`Error: getaddrinfo ENOTFOUND http://localhost`
@@ -120,9 +111,3 @@ yum makecache
 # 安装 bison
 yum install -y bison
 ```
-
-<!--
-1. 服务器如何升级node到v20
-2. 线上数据库建表
-3. 脚本自动部署（无需ssh登录服务器安装pm2和pm2 start 。。。），自动录入M密码
- -->
