@@ -1,46 +1,66 @@
-import React, { useCallback } from "react";
-import { View, Text, Button, Image } from "@tarojs/components";
-import { useEnv, useNavigationBar, useModal, useToast } from "taro-hooks";
-import Taro, {
-  useDidShow,
-  useDidHide,
-  useLoad,
-  useUnload,
-  useReady,
-} from "@tarojs/taro";
-
+import { View, Image, Text } from "@tarojs/components";
 import "./index.scss";
+import Taro from "@tarojs/taro";
 
-const Welcome = () => {
-  const toHome = () => {
-    Taro.navigateTo({
-      url: "/packageMain/home/index",
-    });
-  };
+import aiChatIcon from "@/assets/svg/input-ai.svg";
+import gameIcon from "@/assets/svg/device-gamepad-2.svg";
+import toolsIcon from "@/assets/svg/tool.svg";
+import bossIcon from "@/assets/svg/swords.svg";
 
-  const toAIChat = () => {
+interface TabItem {
+  icon: string;
+  label: string;
+  path: string;
+}
+
+const tabList: TabItem[] = [
+  {
+    icon: gameIcon,
+    label: "小游戏",
+    path: "/packageGame/welcome/index",
+  },
+  {
+    icon: toolsIcon,
+    label: "工具",
+    path: "/packageMain/home/index",
+  },
+  {
+    icon: aiChatIcon,
+    label: "AI Chat",
+    path: "/packageUser/chat/index",
+  },
+  {
+    icon: bossIcon,
+    label: "调教老板",
+    path: "/packageMain/welcome/index",
+  },
+];
+
+export default function Welcome() {
+  const handleTabClick = (path: string) => {
     Taro.navigateTo({
-      url: "/packageUser/chat/index",
+      url: path,
     });
   };
 
   return (
-    <View className="welcome-page-wrapper flex flex-col items-center">
-      <View className="welcome-logo"></View>
-      <View className="welcome-desc flex flex-col items-center mt-3">
-        <p className="desc-item">欢迎回家！</p>
-        <p className="desc-item">作为地球上最优秀的员工，</p>
-        <p className="desc-item">快来调教你</p>
-        <p className="desc-item">嗷嗷待铺的老板们吧~！</p>
+    <View className="welcome-page">
+      <View className="welcome-header">
+        <Text className="welcome-title">OFFUN</Text>
+        <Text className="welcome-subtitle">智享办公乐趣！</Text>
       </View>
-      <div className="office-btn big mt-5" onClick={toAIChat}>
-        AI Chat
-      </div>
-      <div className="office-btn big mt-5" onClick={toHome}>
-        开始调教
-      </div>
+      <View className="tab-container">
+        {tabList.map((tab, index) => (
+          <View
+            key={index}
+            className="tab-item"
+            onClick={() => handleTabClick(tab.path)}
+          >
+            <Image className="tab-icon" src={tab.icon} />
+            <Text className="tab-label">{tab.label}</Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
-};
-
-export default Welcome;
+}

@@ -1,5 +1,5 @@
 .login-page-wrapper {
-  @apply h-screen bg-white p-4;
+  @apply h-screen bg-white p-4 box-border;
 
   .login-header {
     @apply mt-10 mb-12 text-center;

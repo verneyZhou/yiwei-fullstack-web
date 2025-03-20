@@ -103,6 +103,36 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/games",
+    component: Layouts,
+    redirect: "/games/tetris",
+    name: "Games",
+    meta: {
+      title: "游戏管理",
+      elIcon: "Monitor"
+    },
+    children: [
+      {
+        path: "tetris",
+        component: () => import("@/pages/games/tetris/index.vue"),
+        name: "GamesTetris",
+        meta: {
+          title: "俄罗斯方块",
+          keepAlive: true
+        }
+      },
+      {
+        path: "snake",
+        component: () => import("@/pages/games/snake/index.vue"),
+        name: "GamesSnake",
+        meta: {
+          title: "贪吃蛇",
+          keepAlive: true
+        }
+      }
+    ]
+  },
+  {
     path: "/demo",
     component: Layouts,
     redirect: "/demo/unocss",

@@ -12,6 +12,7 @@ export default defineAppConfig({
     {
       'root': 'packageMain',
       'pages': [
+        'welcome/index',
         'home/index',
       ],
     },
@@ -24,6 +25,14 @@ export default defineAppConfig({
         'more/index',
         'my/index',
         'chat/index'
+      ],
+    },
+    {
+      'root': 'packageGame',
+      'pages': [
+        'welcome/index',
+        'tetris/index',
+        'snake/index',
       ],
     },
   ],

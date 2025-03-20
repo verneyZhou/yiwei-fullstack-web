@@ -1,0 +1,198 @@
+.game-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  
+  .game-header {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    
+    .score-container, .level-container, .high-score-container {
+      background-color: #fff;
+      padding: 6px 12px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      
+      .label {
+        font-size: 12px;
+        color: #666;
+      }
+      
+      .value {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+    }
+  }
+
+  .level-select {
+    .level-buttons {
+        display: flex;
+
+    }
+  }
+  
+  .game-board-container {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .game-board {
+    position: relative;
+    border: 2px solid #333;
+    background-color: #000;
+    overflow: hidden;
+    
+    .game-piece {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-sizing: border-box;
+    }
+    
+    .snake-head {
+      background-color: #0056b3;
+      border-radius: 4px;
+    }
+    
+    .snake-body {
+      background-color: #4a90e2;
+    }
+    
+    .food {
+      border-radius: 50%;
+    }
+  }
+  
+  .game-controls {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    
+    .control-row {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    
+    // .control-button {
+    //   width: 40px;
+    //   height: 40px;
+    //   margin: 0 6px;
+    //   border-radius: 50%;
+    //   background-color: #4a90e2;
+    //   color: white;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   font-size: 16px;
+    //   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      
+    //   &:active {
+    //     transform: translateY(2px);
+    //     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    //   }
+    // }
+    
+    // .pause-button {
+    //   background-color: #f5a623;
+    // }
+
+    .control-button {
+        width: 30px;
+        height: 30px;
+        margin: 0 6px;
+        border-radius: 50%;
+        background-color: #4a90e2;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        
+        &:active {
+          transform: translateY(2px);
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    }
+      
+    .start-button, .pause-button {
+        width: auto;
+        height: auto;
+        padding: 4px 8px;
+        border-radius: 5px;
+        margin: 0 4px;
+        background-color: #f5a623;
+        font-size: 14px;
+    }
+  }
+  
+  .level-select {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+    .level-button {
+      padding: 8px 16px;
+      margin: 0 5px;
+      background-color: #f0f0f0;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #666;
+      
+      &.active {
+        background-color: #4a90e2;
+        color: white;
+      }
+    }
+  }
+  
+  .game-over-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,0.8);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    width: 80%;
+    max-width: 300px;
+    
+    .modal-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .final-score {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    
+    .restart-button {
+      background-color: #4a90e2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      
+      &.mt-2 {
+        margin-top: 10px;
+      }
+    }
+  }
+}

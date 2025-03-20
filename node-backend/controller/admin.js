@@ -13,6 +13,7 @@ const wrapperController = async (ctx, method) => {
 };
 
 module.exports = {
+    // ai管理
     getAIModelList: (ctx) => {
         return wrapperController(ctx, adminService.getAIModels);
     },
@@ -36,5 +37,18 @@ module.exports = {
     },
     deleteChat: (ctx) => {
         return wrapperController(ctx, adminService.deleteChat);
+    },
+    // 游戏管理
+    getTetrisScoreList: (ctx) => {
+        return wrapperController(ctx, adminService.getTetrisScoreList);
+    },
+    deleteTetrisScore: (ctx) => {
+        return wrapperController(ctx, adminService.deleteTetrisScore);
+    },
+    getSnakeScoreList: (ctx) => {
+        return wrapperController(ctx, adminService.getSnakeScoreList);
+    },
+    deleteSnakeScore: (ctx) => {
+        return wrapperController(ctx, adminService.deleteSnakeScore);
     },
 };

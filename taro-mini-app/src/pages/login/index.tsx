@@ -67,7 +67,7 @@ const RegisterForm = (props) => {
         await props.updateToken(_token, "account");
         setTimeout(() => {
           Taro.redirectTo({
-            url: "/packageUser/chat/index",
+            url: "/pages/welcome/index",
           });
         }, 500);
       } else {
@@ -304,7 +304,10 @@ const LoginPage = () => {
   //   账号登录
   const handleSubmit = async (err, values) => {
     console.log("Form values:", err, values);
-    const { username, password, captcha_code } = values;
+    let { username, password, captcha_code } = values;
+    if (typeof captcha_code === "object" && captcha_code.value) {
+      captcha_code = captcha_code.value;
+    }
 
     // 表单校验
     if (!username || !password || !captcha_code) {
@@ -333,7 +336,7 @@ const LoginPage = () => {
         await updateToken(_token, "account");
         setTimeout(() => {
           Taro.redirectTo({
-            url: "/packageUser/chat/index",
+            url: "/pages/welcome/index",
           });
         }, 500);
       } else {
