@@ -32,7 +32,11 @@ const RegisterForm = (props) => {
 
   const handleSubmit = async (err, values) => {
     console.log("Form values:", err, values);
-    const { username, password, captcha_code, confirm_password } = values;
+    let { username, password, captcha_code, confirm_password } = values;
+
+    if (typeof captcha_code === "object" && captcha_code.value) {
+      captcha_code = captcha_code.value;
+    }
 
     // 表单校验
     if (Object.values(values).some((v) => !v)) {
