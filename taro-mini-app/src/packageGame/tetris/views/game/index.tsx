@@ -544,7 +544,7 @@ export default function Game() {
   };
 
   return (
-    <View className="game-container">
+    <View className="tetris-game-container">
       <View className="game-header">
         <View className="level-container">
           <Text className="label">难度</Text>
@@ -579,42 +579,55 @@ export default function Game() {
 
           <View className="game-controls">
             <View className="control-row">
-              <View className="control-button" onClick={dropPiece}>
-                ⤓
+              <View className="direction-box">
+                <View
+                  className="control-button direction-fix"
+                  onClick={dropPiece}
+                >
+                  ⤓
+                </View>
+                <View
+                  className="control-button direction-left"
+                  onClick={() => movePiece("left")}
+                >
+                  ←
+                </View>
+                <View
+                  className="control-button direction-down"
+                  onClick={() => movePiece("down")}
+                >
+                  ↓
+                </View>
+                <View
+                  className="control-button direction-right"
+                  onClick={() => movePiece("right")}
+                >
+                  →
+                </View>
+                <View
+                  className="control-button direction-rotate"
+                  onClick={rotatePiece}
+                >
+                  ↻
+                </View>
               </View>
-              <View
-                className="control-button"
-                onClick={() => movePiece("left")}
-              >
-                ←
+              <View className="control-buttons">
+                <View
+                  className="pause-button control-button"
+                  onClick={togglePause}
+                >
+                  {isPaused ? "继续" : "暂停"}
+                </View>
+                <View
+                  className="control-button pause-button"
+                  onClick={startGame}
+                >
+                  重开
+                </View>
+                <View className="office-btn mini" onClick={endGame}>
+                  结束游戏
+                </View>
               </View>
-              <View
-                className="control-button"
-                onClick={() => movePiece("down")}
-              >
-                ↓
-              </View>
-              <View
-                className="control-button"
-                onClick={() => movePiece("right")}
-              >
-                →
-              </View>
-              <View className="control-button" onClick={rotatePiece}>
-                ↻
-              </View>
-              <View
-                className="pause-button control-button"
-                onClick={togglePause}
-              >
-                {isPaused ? "继续" : "暂停"}
-              </View>
-              <View className="control-button pause-button" onClick={startGame}>
-                重开
-              </View>
-            </View>
-            <View className="office-btn mini" onClick={endGame}>
-              结束游戏
             </View>
           </View>
         </>

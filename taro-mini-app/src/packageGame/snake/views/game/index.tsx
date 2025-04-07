@@ -568,7 +568,7 @@ export default function Game() {
   };
 
   return (
-    <View className="game-container">
+    <View className="snake-game-container">
       <View className="game-header">
         <View className="level-container">
           <Text className="label">难度</Text>
@@ -602,42 +602,49 @@ export default function Game() {
 
           <View className="game-controls">
             <View className="control-row">
-              <View
-                className="control-button"
-                onClick={() => changeDirection(DIRECTIONS.UP)}
-              >
-                ↑
+              <View className="direction-box">
+                <View
+                  className="control-button direction-up"
+                  onClick={() => changeDirection(DIRECTIONS.UP)}
+                >
+                  ↑
+                </View>
+                <View
+                  className="control-button direction-left"
+                  onClick={() => changeDirection(DIRECTIONS.LEFT)}
+                >
+                  ←
+                </View>
+                <View
+                  className="control-button direction-down"
+                  onClick={() => changeDirection(DIRECTIONS.DOWN)}
+                >
+                  ↓
+                </View>
+                <View
+                  className="control-button direction-right"
+                  onClick={() => changeDirection(DIRECTIONS.RIGHT)}
+                >
+                  →
+                </View>
               </View>
-              <View
-                className="control-button"
-                onClick={() => changeDirection(DIRECTIONS.LEFT)}
-              >
-                ←
+              <View className="control-buttons">
+                <View
+                  className="pause-button control-button"
+                  onClick={togglePause}
+                >
+                  {isPaused ? "继续" : "暂停"}
+                </View>
+                <View
+                  className="control-button pause-button"
+                  onClick={startGame}
+                >
+                  重开
+                </View>
+                <View className="office-btn mini" onClick={endGame}>
+                  结束游戏
+                </View>
               </View>
-              <View
-                className="control-button"
-                onClick={() => changeDirection(DIRECTIONS.DOWN)}
-              >
-                ↓
-              </View>
-              <View
-                className="control-button"
-                onClick={() => changeDirection(DIRECTIONS.RIGHT)}
-              >
-                →
-              </View>
-              <View
-                className="pause-button control-button"
-                onClick={togglePause}
-              >
-                {isPaused ? "继续" : "暂停"}
-              </View>
-              <View className="control-button pause-button" onClick={startGame}>
-                重开
-              </View>
-            </View>
-            <View className="office-btn mini" onClick={endGame}>
-              结束游戏
             </View>
           </View>
         </>

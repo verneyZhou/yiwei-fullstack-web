@@ -289,7 +289,10 @@ class AIService {
                     temperature: 1.3,
                 });
                 console.log('======response', response);
-                resolve(response.choices[0].message);
+                resolve({
+                    ...response,
+                    message: response.choices[0].message,
+                });
             } catch (error) {
                 console.log('======error', error);
                 reject(error);
