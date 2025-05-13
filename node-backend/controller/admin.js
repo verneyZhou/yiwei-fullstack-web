@@ -51,4 +51,17 @@ module.exports = {
     deleteSnakeScore: (ctx) => {
         return wrapperController(ctx, adminService.deleteSnakeScore);
     },
+    // 低码管理
+    getLowCodePageList: (ctx) => {
+        return wrapperController(ctx, adminService.getLowCodePageList);
+    },
+    deleteLowCodePage: (ctx) => {
+        return wrapperController(ctx, adminService.deleteLowCodePage);
+    },
+    getLowCodeProjectList: (ctx) => {
+        return wrapperController(ctx, adminService.getLowCodeProjectList);
+    },
+    deleteLowCodeProject: (ctx) => {
+        return wrapperController(ctx, adminService.deleteLowCodeProject);
+    },
 };

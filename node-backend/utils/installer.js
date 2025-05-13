@@ -14,8 +14,7 @@ const routerInstaller = async (app) => {
             app.use(require(`${path}`).allowedMethods());
         });
     });
-}
-
+};
 
 /**
  * 获取指定目录下所有以 .router.js 结尾的文件
@@ -30,33 +29,38 @@ async function getRouterFiles(dir) {
             if (err) {
                 reject(`无法读取目录 ${dir}: ${err}`);
             }
-            for(let i= 0; i < files.length; i++) {
+            for (let i = 0; i < files.length; i++) {
                 let file = files[i];
                 const filePath = path.join(dir, file);
                 fs.stat(filePath, async (err, stats) => {
                     if (err) {
                         reject(`无法获取文件状态 ${filePath}: ${err}`);
                     }
-                    if (stats.isDirectory()) { // 如果是目录，则递归调用
+                    if (stats.isDirectory()) {
+                        // 如果是目录，则递归调用
                         try {
                             const files = await getRouterFiles(filePath);
                             routerFiles = routerFiles.concat(files);
                             index++;
-                        } catch(err) {
+                        } catch (err) {
                             reject(err);
                         }
-                    } else if (stats.isFile() && filePath.endsWith('.router.js')) {
+                    } else if (
+                        stats.isFile() &&
+                        filePath.endsWith('.router.js')
+                    ) {
                         routerFiles.push(filePath);
                         index++;
                     }
-                    if (index >= files.length) { // 遍历完成，返回结果
+                    if (index >= files.length) {
+                        // 遍历完成，返回结果
                         resolve(routerFiles);
                     }
                 });
             }
         });
-    })
-       // // 读取目录内容
+    });
+    // // 读取目录内容
     // const files = fs.readdirSync(dir, {
     //     encoding: 'utf-8',
     // });
@@ -72,8 +76,6 @@ async function getRouterFiles(dir) {
     // return routerFiles;
 }
 
-
-
 module.exports = {
-    routerInstaller
+    routerInstaller,
 };

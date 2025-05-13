@@ -79,7 +79,9 @@ app.use(
 app.use(
     koajwt({
         secret: config.JWT_PRIVATE_KEY,
-        // cookie: 'token', // 从 cookie 中获取token
+        cookie: 'yiwei-admin-web-token-key', // 从cookie中获取token
+        // key: 'user',     // 解析后的用户信息存储在ctx.state.user中
+        // tokenKey: 'token'  // 从请求头获取token时的键名
         // debug: true // 开启debug可以看到准确的错误信息
     }).unless({
         path: [
@@ -92,6 +94,8 @@ app.use(
             // /^\/api\/captcha\/code/,
             /^\/api\/captcha\/\w*/,
             /^\/api\/admin\/auth\/\w*/,
+            /^\/api\/lowcode\/proxy/,
+            /^\/api\/lowcode\/\w*/,
         ], // 排除不需要token验证的路由
     })
 );

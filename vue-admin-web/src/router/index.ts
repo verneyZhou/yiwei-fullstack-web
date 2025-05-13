@@ -133,6 +133,36 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/lowcode",
+    component: Layouts,
+    redirect: "/lowcode/page",
+    name: "LowCode",
+    meta: {
+      title: "低码管理",
+      elIcon: "Monitor"
+    },
+    children: [
+      {
+        path: "project",
+        component: () => import("@/pages/lowcode/project/index.vue"),
+        name: "LowCodeProject",
+        meta: {
+          title: "项目管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "page",
+        component: () => import("@/pages/lowcode/page/index.vue"),
+        name: "LowCodePage",
+        meta: {
+          title: "页面管理",
+          keepAlive: true
+        }
+      },
+    ]
+  },
+  {
     path: "/demo",
     component: Layouts,
     redirect: "/demo/unocss",

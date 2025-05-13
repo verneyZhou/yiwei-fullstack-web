@@ -485,6 +485,101 @@ class AdminService {
             }
         });
     }
+
+    /**
+     * 低码管理
+     */
+    // 获取低码页面列表
+    async getLowCodePageList(ctx) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const {
+                    page_size = 10,
+                    page_num = 1,
+                    name,
+                    project_id,
+                    creator,
+                    sort_field = '',
+                    sort_order = '',
+                } = ctx.request.query;
+                console.log(ctx.request.query);
+                // 构建基础查询语句
+                let statement = `SELECT * FROM admin.lowcode_page_table WHERE 1=1`;
+                const validSortFields = ['create_time', 'update_time'];
+                const params = [];
+                // 添加名称模糊搜索条件
+                if (name) {
+                    statement += ` AND name LIKE ?`;
+                    params.push(`%${name}%`);
+                }
+                if (project_id) {
+                    statement += ` AND project_id LIKE?`;
+                    params.push(`%${project_id}%`);
+                }
+
+                if (creator) {
+                    statement += ` AND creator = ?`;
+                    params.push(creator);
+                }
+
+                const countStatement = `SELECT COUNT(*) as total FROM (${statement}) as t`;
+                const [[{ total }]] = await connection.execute(
+                    countStatement,
+                    params
+                );
+
+                // 添加分页
+                const pageSize = parseInt(page_size, 10);
+                const pageNum = parseInt(page_num, 10);
+                const limit = pageSize;
+                const offset = pageSize * (pageNum - 1);
+                // 添加排序
+                if (sort_field && validSortFields.includes(sort_field)) {
+                    const order =
+                        sort_order.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
+                    statement += ` ORDER BY ${sort_field} ${order}`;
+                } else {
+                    // 默认按照创建时间倒序
+                    statement += ` ORDER BY create_time DESC`;
+                }
+
+                statement += ` LIMIT ${limit} OFFSET ${offset}`;
+                console.log(statement, params);
+
+                // 执行查询
+                const [result] = await connection.execute(statement, params);
+                console.log(result, total);
+
+                resolve({
+                    list: result,
+                    pagination: {
+                        total,
+                        page_size: pageSize,
+                        page_num: pageNum,
+                    },
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+    // 删除低码页面
+    async deleteLowCodePage(ctx) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const { ids } = ctx.request.body;
+                // 构建 IN 查询条件的占位符
+                const idsArr = ids.split(',');
+                const placeholders = idsArr.map(() => '?').join(',');
+                const statement = `DELETE FROM admin.lowcode_page_table WHERE id IN (${placeholders})`;
+                const [result] = await connection.execute(statement, idsArr);
+                console.log(result);
+                resolve({ success: true });
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
 }
 
 module.exports = new AdminService();
