@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const { koaBody } = require('koa-body');
 const cors = require('koa2-cors');
+const static = require('koa-static');
 const koajwt = require('koa-jwt');
 const path = require('path');
 
@@ -62,9 +63,9 @@ app.use(async (ctx, next) => {
 // 文件上传中间件
 app.use(
     koaBody({
-        multipart: true,
+        multipart: true, // 支持文件上传
         formidable: {
-            uploadDir: path.join(__dirname, 'public/'), // 设置文件上传目录
+            // uploadDir: path.join(__dirname, 'public'), // 设置文件上传目录
             keepExtensions: true, // 保持文件的后缀
             allowEmptyFiles: false, // 允许上传空文件
             maxFiles: 1, // 设置同时上传文件的个数
@@ -79,7 +80,8 @@ app.use(
 app.use(
     koajwt({
         secret: config.JWT_PRIVATE_KEY,
-        cookie: 'yiwei-admin-web-token-key', // 从cookie中获取token
+        cookie: 'token',
+        // cookie: 'yiwei-admin-web-token-key', // 从cookie中获取token
         // key: 'user',     // 解析后的用户信息存储在ctx.state.user中
         // tokenKey: 'token'  // 从请求头获取token时的键名
         // debug: true // 开启debug可以看到准确的错误信息
@@ -96,12 +98,16 @@ app.use(
             /^\/api\/admin\/auth\/\w*/,
             /^\/api\/lowcode\/proxy/,
             /^\/api\/lowcode\/\w*/,
+            /^\/api\/upload\/\w*/, // 上传文件
         ], // 排除不需要token验证的路由
     })
 );
 
 // 路由
 routerInstaller(app);
+
+// 静态资源
+app.use(static(path.join(__dirname, 'public')));
 
 // 错误处理
 app.on('error', errorHandler);

@@ -35,6 +35,14 @@ const MINI_CONFIG = {
     app_secret: process.env.MINI_SECRET,
 };
 
+// 阿里云OSS配置
+const OSS_CONFIG = {
+    region: process.env.OSS_REGION, // 根据你的 OSS 实例所在地域修改
+    accessKeyId: process.env.OSS_ACCESS_KEY_ID,
+    accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET,
+    bucket: process.env.OSS_BUCKET_NAME,
+};
+
 /**
  *
  */
@@ -67,6 +75,7 @@ module.exports = {
     JWT_PRIVATE_KEY,
     JWT_EXPIRES_IN,
     MINI_CONFIG,
+    OSS_CONFIG,
     AUTH,
     AI_KEY,
 };
