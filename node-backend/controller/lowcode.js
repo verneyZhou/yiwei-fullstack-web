@@ -41,6 +41,9 @@ module.exports = {
     createPage: (ctx) => {
         return wrapperController(ctx, LowCodeService.createPage);
     },
+    getPageTemplateList: (ctx) => {
+        return wrapperController(ctx, LowCodeService.getPageTemplateList);
+    },
     async publishPage(ctx) {
         try {
             // 查询已发布的页面

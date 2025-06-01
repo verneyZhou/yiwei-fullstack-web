@@ -285,6 +285,26 @@ class LowCodeService {
             }
         });
     }
+    // 获取页面模板数据
+    async getPageTemplateList(ctx) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const { page_size = 10, page_num = 1 } = ctx.request.query;
+                const statement = 'SELECT * FROM admin.lowcode_temp_table';
+                const [result] = await connection.execute(statement);
+                resolve({
+                    list: result,
+                    pagination: {
+                        total: result.length,
+                        page_size: parseInt(page_size, 10),
+                        page_num: parseInt(page_num, 10),
+                    },
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
 
     /**
      * 发布相关操作

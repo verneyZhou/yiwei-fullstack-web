@@ -19,6 +19,8 @@ router.get('/page/detail', lowcode.getPageDetail);
 router.post('/page/update', lowcode.updatePage);
 // 新增页面
 router.post('/page/create', lowcode.createPage);
+// 获取模板页面数据
+router.get('/page/template', lowcode.getPageTemplateList);
 
 // 发布接口
 router.post('/page/publish', lowcode.publishPage);
