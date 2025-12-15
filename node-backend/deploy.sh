@@ -18,7 +18,7 @@ rm -rf $DEPLOY_DIR
 mkdir $DEPLOY_DIR
 
 # 复制必要的文件到部署目录
-cp -r .env .env.config.js app.js config.js controller error main.js package.json pm2.config.js router service sql utils $DEPLOY_DIR/
+cp -r .env .env.config.js app.js config.js yarn.lock package-lock.json controller error main.js package.json pm2.config.js router service sql data utils $DEPLOY_DIR/
 
 # 连接服务器并部署
 echo "正在部署到服务器..."
@@ -43,11 +43,11 @@ rm -rf $DEPLOY_DIR
 
 echo "正在启动服务..."
 # 在服务器上安装依赖并启动服务（首次或需要重新下载node包）
-# ssh -p ${PORT} ${USER}@${HOST} "cd ${REMOTE_DIR} && \
-#     npm install && \
-#     pm2 update && pm2 start pm2.config.js && pm2 list"
+ssh -p ${PORT} ${USER}@${HOST} "cd ${REMOTE_DIR} && \
+    yarn && \
+    pm2 update && pm2 start pm2.config.js && pm2 list"
 
-ssh -p ${PORT} ${USER}@${HOST} "cd ${REMOTE_DIR} && pm2 update && pm2 reload YiweiNodeServer && pm2 list"
+# ssh -p ${PORT} ${USER}@${HOST} "cd ${REMOTE_DIR} && pm2 update && pm2 reload YiweiNodeServer && pm2 list"
 
 # 清理临时部署目录
 rm -rf $DEPLOY_DIR

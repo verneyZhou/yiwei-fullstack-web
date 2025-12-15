@@ -111,3 +111,7 @@ yum makecache
 # 安装 bison
 yum install -y bison
 ```
+
+## TODO
+
+-   ai 助手部署到服务器上提示 node 版本需 v18+，如何升级 centos 云服务器到 v18+版本？

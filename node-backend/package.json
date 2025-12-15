@@ -20,6 +20,9 @@
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^13.1.0",
+    "@langchain/community": "1.0.5",
+    "@langchain/core": "1.1.5",
+    "@langchain/deepseek": "^1.0.3",
     "ali-oss": "^6.23.0",
     "axios": "^1.7.9",
     "cookie": "^1.0.2",
@@ -34,6 +37,7 @@
     "koa-jwt": "^4.0.4",
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",
+    "langchain": "0.2.20",
     "log4js": "^6.9.1",
     "mysql2": "^3.11.5",
     "nanoid": "^5.1.2",
@@ -42,7 +46,8 @@
     "path": "^0.12.7",
     "pm2": "^5.4.3",
     "svg-captcha": "^1.4.0",
-    "uuid": "^11.0.3"
+    "uuid": "^11.0.3",
+    "ignore": "^5.2.0"
   },
   "devDependencies": {
     "eslint": "^9.21.0"

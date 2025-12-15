@@ -25,4 +25,7 @@ router.get('/chat/list', admin.getChatList);
 // 删除用户聊天记录
 router.post('/chat/delete', admin.deleteChat);
 
+// ai助手
+router.post('/chat/stream', admin.chatStream);
+
 module.exports = router;

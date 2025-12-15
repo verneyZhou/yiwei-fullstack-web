@@ -30,7 +30,7 @@ const tableData = ref<PageData[]>([]);
 
 // 搜索表单
 const searchFormRef = ref<FormInstance | null>(null);
-const searchData = reactive({
+const searchData = reactive<Record<string, any>>({
   name: undefined,
   project_id: undefined,
   creator: undefined,
@@ -214,7 +214,6 @@ function handleViewContent(pageData: any) {
                 text
                 bg
                 size="small"
-                :icon="View"
                 @click="
                   () => {
                     const { page_data } = scope.row;

@@ -1,19 +1,23 @@
-const fs = require('node:fs');
+const fs = require('node:fs').promises;
 const path = require('node:path');
 
 // 路由自动注册
 const routerInstaller = async (app) => {
+    console.log('=====app', app);
     const exclude = [];
     const routerdir = path.resolve(__dirname, '../router');
     // 自动获取routerDir目录下所有以 .router.js 结尾的文件
-    getRouterFiles(routerdir).then((routers) => {
-        const include = routers.filter((item) => !exclude.includes(item));
-        console.log('====include', include);
-        include.forEach((path) => {
-            app.use(require(`${path}`).routes());
-            app.use(require(`${path}`).allowedMethods());
+    getRouterFilesV2(routerdir)
+        .then((routers) => {
+            const include = routers.filter((item) => !exclude.includes(item));
+            include.forEach((path) => {
+                app.use(require(`${path}`).routes());
+                app.use(require(`${path}`).allowedMethods());
+            });
+        })
+        .catch((err) => {
+            console.log(err);
         });
-    });
 };
 
 /**
@@ -74,6 +78,30 @@ async function getRouterFiles(dir) {
     //     }
     // })
     // return routerFiles;
+}
+
+/**
+ * 获取指定目录下所有以 .router.js 结尾的文件
+ * @param {string} dir - 要遍历的目录
+ * @returns {Promise<string[]>} - 匹配的文件路径数组
+ */
+async function getRouterFilesV2(dir) {
+    const routerFiles = [];
+    const files = await fs.readdir(dir);
+
+    for (const file of files) {
+        const filePath = path.join(dir, file);
+        const stats = await fs.stat(filePath);
+
+        if (stats.isDirectory()) {
+            // 如果是目录，则递归调用
+            const subFiles = await getRouterFilesV2(filePath);
+            routerFiles.push(...subFiles);
+        } else if (stats.isFile() && filePath.endsWith('.router.js')) {
+            routerFiles.push(filePath);
+        }
+    }
+    return routerFiles;
 }
 
 module.exports = {

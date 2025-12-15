@@ -1,4 +1,5 @@
 const adminService = require('../service/admin');
+const ragService = require('../service/rag');
 const util = require('../utils/util');
 
 const wrapperController = async (ctx, method) => {
@@ -11,6 +12,28 @@ const wrapperController = async (ctx, method) => {
         util.fail(ctx, message, code);
     }
 };
+
+// ai助手
+async function chatStream(ctx) {
+    try {
+        const uid = (
+            ctx.request.headers['x-user-id'] ||
+            ctx.request.headers['x-real-ip'] ||
+            ''
+        ).toString();
+        const key = `quota:${uid || ctx.ip}`;
+        await ragService.rateLimit(ctx, key, 30, 60); // 每个用户/IP 每分钟最多 30 次请求
+        await ragService.streamChat(ctx);
+    } catch (err) {
+        console.log('===err', err);
+        util.fail(
+            ctx,
+            err?.message || 'error',
+            err?.code || 500,
+            err?.data || null
+        );
+    }
+}
 
 module.exports = {
     // ai管理
@@ -64,4 +87,6 @@ module.exports = {
     deleteLowCodeProject: (ctx) => {
         return wrapperController(ctx, adminService.deleteLowCodeProject);
     },
+    // ai助手
+    chatStream,
 };

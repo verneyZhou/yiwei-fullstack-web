@@ -43,6 +43,12 @@ const OSS_CONFIG = {
     bucket: process.env.OSS_BUCKET_NAME,
 };
 
+// rag
+const RAG_KEY = {
+    ALIBABA_API_KEY: process.env.ALIBABA_API_KEY,
+    DEEPSEEK_API_KEY: process.env.DEEPSEEK_API_KEY_V2,
+};
+
 /**
  *
  */
@@ -78,4 +84,5 @@ module.exports = {
     OSS_CONFIG,
     AUTH,
     AI_KEY,
+    RAG_KEY,
 };
